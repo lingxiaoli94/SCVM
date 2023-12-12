@@ -1,4 +1,5 @@
-# Source code for Self-Consistent Velocity Matching of Probability Flows (NeurIPS 2023).
+# Self-Consistent Velocity Matching of Probability Flows
+This repository contains the source code for the NeurIPS 2023 paper [Self-Consistent Velocity Matching of Probability Flows](https://arxiv.org/pdf/2301.13737.pdf) by Lingxiao Li, Samuel Hurault, and Justin Solomon.
 
 ## Dependencies
 - jax (please follow the official installation instructions; all other packages can be `pip` installed)
@@ -16,8 +17,8 @@
 
 ## Code structure
 - `scvm/` folder is a Python package that involves all core implementation.
-  - `scvm/problems/` contains classes for all problem type, with base class defined in `problem_base.py`.
-  - `scvm/solvers` contains classes for all baseline solvers and the proposed solver SCVM, with base class defined in `solver_base.py`.
+  - `scvm/problems/` contains classes for all problem types, with the base class defined in `problem_base.py`.
+  - `scvm/solvers` contains classes for all baseline solvers and the proposed solver SCVM, with the base class defined in `solver_base.py`.
 - `tests/` folder contains experiments from the paper. 
   - Each subfolder contains a `run.py` file which is the entry point of an experiment.
 
