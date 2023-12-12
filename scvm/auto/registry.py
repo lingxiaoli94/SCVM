@@ -3,10 +3,10 @@ from typing import Any
 import optax
 import flax
 
-from cwgf.solvers.scvms import SCVMS
-from cwgf.solvers.adjoint import AdjointSolver
-from cwgf.solvers.jko import JKO
-from cwgf.solvers.dfe import DFE
+from scvm.solvers.scvms import SCVMS
+from scvm.solvers.adjoint import AdjointSolver
+from scvm.solvers.jko import JKO
+from scvm.solvers.dfe import DFE
 
 @dataclass
 class ParamClsSetting:
@@ -73,7 +73,7 @@ g_solver_setting_dict = {
     ),
 }
 
-from cwgf.solvers.thp import THP
+from scvm.solvers.thp import THP
 g_thp_param_dict = {
     'train_batch_size': 1000,
     'train_num_time': 20,
@@ -95,11 +95,11 @@ g_thp_param_dict = {
     'ckpt_name': 'ckpt',
 }
 
-from cwgf.solvers.models.tdmlp import TDMLP
-from cwgf.solvers.models.mnf import MNF
-from cwgf.solvers.models.vnn import VNN
-from cwgf.solvers.models.icnn import ICNN
-from cwgf.solvers.models.dummy import Dummy
+from scvm.solvers.models.tdmlp import TDMLP
+from scvm.solvers.models.mnf import MNF
+from scvm.solvers.models.vnn import VNN
+from scvm.solvers.models.icnn import ICNN
+from scvm.solvers.models.dummy import Dummy
 
 g_model_setting_dict = {
     'tdmlp': ParamClsSetting(

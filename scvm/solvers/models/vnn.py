@@ -5,8 +5,8 @@ Network architecture for parameterizing time-varying velocity fields.
 import jax.numpy as jnp
 from flax import linen as nn
 
-from cwgf.solvers.models.activation import ActivationFactory
-from cwgf.solvers.models.time_emb import TimeEmbedding, SpaceEmbedding
+from scvm.solvers.models.activation import ActivationFactory
+from scvm.solvers.models.time_emb import TimeEmbedding, SpaceEmbedding
 
 
 class LinearSkipConnection(nn.Module):

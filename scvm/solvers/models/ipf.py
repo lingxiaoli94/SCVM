@@ -2,7 +2,7 @@
 Identity push forward. Used for debugging.
 '''
 
-from cwgf.solvers.models.tdpf_base import TDPFBase
+from scvm.solvers.models.tdpf_base import TDPFBase
 
 import flax.linen as nn
 

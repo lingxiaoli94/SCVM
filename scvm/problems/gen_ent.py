@@ -1,7 +1,7 @@
 '''
 Generalized Entropy F(\mu) = (1/m-1) \int \mu^m dx
 '''
-from cwgf.problems.problem_base import ProblemBase
+from scvm.problems.problem_base import ProblemBase
 import jax
 import jax.numpy as jnp
 
@@ -25,7 +25,7 @@ class GeneralizedEntropy(ProblemBase):
             Optional sample function: [rng, D] -> (B, D).
           total_time:
             Total flow time.
-          uniform_scale: 
+          uniform_scale:
             scaling parameter for the bound of the uniform sampler
         '''
         self.dim = dim

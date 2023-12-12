@@ -2,7 +2,7 @@
 Masked normalizing flow of Dinh et al. 2017.
 '''
 
-from cwgf.solvers.models.tdpf_base import TDPFBase
+from scvm.solvers.models.tdpf_base import TDPFBase
 
 import numpy as np
 from flax import linen as nn
@@ -10,8 +10,8 @@ import jax
 import jax.numpy as jnp
 from typing import Any
 
-from cwgf.solvers.models.activation import ActivationFactory
-from cwgf.solvers.models.time_emb import TimeEmbedding
+from scvm.solvers.models.activation import ActivationFactory
+from scvm.solvers.models.time_emb import TimeEmbedding
 
 class BasicMLP(nn.Module):
     out_dim: int

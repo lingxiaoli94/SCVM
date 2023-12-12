@@ -11,14 +11,14 @@ import math
 import time
 from sklearn.datasets import make_spd_matrix
 
-from cwgf.auto.ec import ExperimentCoordinator
-from cwgf.problems.kl import KLDivergence
-from cwgf.problems.distribution import Gaussian, Mixture
-from cwgf.eval.cflow import \
+from scvm.auto.ec import ExperimentCoordinator
+from scvm.problems.kl import KLDivergence
+from scvm.problems.distribution import Gaussian, Mixture
+from scvm.eval.cflow import \
     wandb_log_animation, wandb_log_image
-from cwgf.eval.metrics import compute_metric
-from cwgf.eval.metrics import compute_consistency
-from cwgf.eval.utils import save_dict_h5
+from scvm.eval.metrics import compute_metric
+from scvm.eval.metrics import compute_consistency
+from scvm.eval.utils import save_dict_h5
 
 
 if __name__ == '__main__':

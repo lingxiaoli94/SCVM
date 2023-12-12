@@ -155,7 +155,7 @@ def compute_metric(dist1, dist2, *,
         mean1 = jnp.mean(samples1, axis=0)
         cov1 = jnp.cov(samples1, rowvar=False)
         if samples2 is None:
-            from cwgf.problems.distribution import Gaussian
+            from scvm.problems.distribution import Gaussian
             assert(isinstance(dist2, Gaussian))
             mean2 = dist2.mean
             cov2 = dist2.get_cov()
@@ -174,7 +174,7 @@ def compute_metric(dist1, dist2, *,
         return (log_p1 - log_p2).mean()
     elif metric == 'tv' :
         # we assume dist2 is an instance of Barenblatt distribution
-        from cwgf.problems.distribution import Barenblatt
+        from scvm.problems.distribution import Barenblatt
         assert(isinstance(dist2, Barenblatt))
         bound = 1.25*dist2.bound
         n = int((50000)**(1/dim))
@@ -203,10 +203,10 @@ def compute_metric(dist1, dist2, *,
 @partial(jax.jit, static_argnames=['solver'])
 def compute_consistency(*, rng, state, solver):
     print(solver.problem)
-    from cwgf.solvers.flow_base import FlowBase
-    from cwgf.solvers.flow_view import VelocityView, PushforwardView
-    from cwgf.problems.kl import KLDivergence
-    from cwgf.problems.tFPE import TimeFPE
+    from scvm.solvers.flow_base import FlowBase
+    from scvm.solvers.flow_view import VelocityView, PushforwardView
+    from scvm.problems.kl import KLDivergence
+    from scvm.problems.tFPE import TimeFPE
     assert(isinstance(solver, FlowBase))
     assert(isinstance(solver.problem, KLDivergence) or
            isinstance(solver.problem, TimeFPE))

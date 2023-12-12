@@ -1,5 +1,5 @@
 '''
-Time dependant Fokker Planck & Bird Flocking simulation 
+Time dependant Fokker Planck & Bird Flocking simulation
 '''
 
 from pathlib import Path
@@ -11,13 +11,13 @@ from scipy.integrate import solve_ivp
 import math
 from sklearn.datasets import make_spd_matrix
 
-from cwgf.auto.ec import ExperimentCoordinator
-from cwgf.problems.tFPE import TimeFPE
-from cwgf.problems.distribution import Gaussian, gaussian_unnormalized_log_p
-from cwgf.eval.cflow import wandb_log_animation
-from cwgf.eval.metrics import compute_metric
-from cwgf.eval.utils import save_dict_h5
-from cwgf.eval.metrics import compute_consistency
+from scvm.auto.ec import ExperimentCoordinator
+from scvm.problems.tFPE import TimeFPE
+from scvm.problems.distribution import Gaussian, gaussian_unnormalized_log_p
+from scvm.eval.cflow import wandb_log_animation
+from scvm.eval.metrics import compute_metric
+from scvm.eval.utils import save_dict_h5
+from scvm.eval.metrics import compute_consistency
 
 
 class OUSolution:
@@ -49,7 +49,7 @@ class timeOUSolution:
         self.dim = A_t(0).shape[0]
         I = np.eye(self.dim)
         df_mean = lambda t,x : -A_t(t) @ (x - b_t(t))
-        def df_cov(t,x) : 
+        def df_cov(t,x) :
             x = x.reshape((self.dim,self.dim))
             res = -A_t(t) @ x - x @ A_t(t).T + 2*D_tx(t,x)
             return res.reshape((-1,))
@@ -105,10 +105,10 @@ if __name__ == '__main__':
         cov_sqrt_t = lambda t : sigma*np.eye(dim)
         D = lambda t,x : cov_sqrt_t(t) @ cov_sqrt_t(t).T
         c0 = (sigma**2)*np.eye(dim)
-        if dim == 2 : 
+        if dim == 2 :
             A_t = lambda t : jnp.array([[1,0],[0,3]])
             beta_t = lambda t : a*jnp.array([jnp.cos(np.pi*w*t),jnp.sin(np.pi*w*t)])
-        if dim == 3 : 
+        if dim == 3 :
             A_t = lambda t : jnp.array([[1,0,0],[0,3,0], [0,0,1]])
             beta_t = lambda t : a*jnp.array([jnp.cos(np.pi*w*t),jnp.sin(np.pi*w*t),t])
         init_dist = Gaussian(mean=beta_t(0.), cov_sqrt = jnp.linalg.cholesky(c0))
@@ -129,7 +129,7 @@ if __name__ == '__main__':
         alpha = 2
         W = lambda t,x,y : - alpha*jnp.sin(2*np.pi*w*t)*0.5*((jnp.expand_dims(x,0)-y)**2).sum(axis=-1).mean(axis=0) # t : () / x : (D,) / y : (B,D)
         grad_W = None
-    else : 
+    else :
         raise NotImplementedError
 
     if config['type_exp'] == 'time_OU':
@@ -238,7 +238,7 @@ if __name__ == '__main__':
                                     vis_size = 25,
                                     s = 50,
                                     anim_name='GT')
-        
+
         save_dict = {}
         rng, target_rng = jax.random.split(rng)
         save_dict['timesteps'] = timesteps
@@ -262,7 +262,7 @@ if __name__ == '__main__':
                 raw = []
                 arr = []
                 for seed in range(900, 900 + metric_repeat):
-                    if 'SDE' in metric : 
+                    if 'SDE' in metric :
                         cur_SDE_samples = jax.random.choice(jax.random.PRNGKey(seed),SDE_samples,(val_num_sample,1)).reshape(val_num_sample,dim)
                         m = compute_metric(
                                 dist_SDE, GT_dist, samples1=cur_SDE_samples, metric=metric[:-4],

@@ -2,15 +2,15 @@
 Self-consistent velocity-matching solver in the generalized case.
 '''
 
-from cwgf.solvers.flow_base import FlowBase
+from scvm.solvers.flow_base import FlowBase
 
 import jax
 import jax.numpy as jnp
 import wandb
 from functools import partial
 
-from cwgf.auto.train_state import FlowScoreTrainState
-from cwgf.solvers.flow_view import PushforwardView, VelocityView
+from scvm.auto.train_state import FlowScoreTrainState
+from scvm.solvers.flow_view import PushforwardView, VelocityView
 
 class SCVMS(FlowBase):
     def __init__(self, *,

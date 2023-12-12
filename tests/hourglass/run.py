@@ -14,12 +14,12 @@ import matplotlib.pyplot as plt
 import scipy.stats as ss
 from matplotlib.animation import FuncAnimation
 
-from cwgf.auto.ec import ExperimentCoordinator
-from cwgf.problems.distribution import Gaussian
-from cwgf.problems.tFPE import TimeFPE
-from cwgf.eval.cflow import \
+from scvm.auto.ec import ExperimentCoordinator
+from scvm.problems.distribution import Gaussian
+from scvm.problems.tFPE import TimeFPE
+from scvm.eval.cflow import \
     wandb_log_animation, wandb_log_image
-from cwgf.eval.utils import save_dict_h5
+from scvm.eval.utils import save_dict_h5
 
 def b_fn(t, x, *, force_scale, door_x=2, repulsion_scale=0.2):
     assert(x.shape[0] == 2)

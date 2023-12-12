@@ -66,7 +66,7 @@ def metropolis_hastings(rng_key, log_density, num_warmup, num_samples, stepsize,
 
 if __name__ == '__main__' :
 
-    # if dim < 4 : 
+    # if dim < 4 :
     #     num_warmup_sampler = 1000
     #     stepsize_sampler = 0.1
     # elif dim < 7 :
@@ -82,7 +82,7 @@ if __name__ == '__main__' :
     #     num_warmup_sampler = 10000
     #     stepsize_sampler = 0.01
 
-    from cwgf.problems.distribution import Barenblatt
+    from scvm.problems.distribution import Barenblatt
     t0 = 1e-3
     m = 2
     dim = 9

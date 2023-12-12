@@ -9,13 +9,13 @@ import jax.numpy as jnp
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-from cwgf.auto.ec import ExperimentCoordinator
-from cwgf.problems.gen_ent import GeneralizedEntropy
-from cwgf.problems.distribution import Gaussian, StdGaussian, Barenblatt
-from cwgf.eval.cflow import wandb_log_animation
-from cwgf.eval.metrics import compute_metric
+from scvm.auto.ec import ExperimentCoordinator
+from scvm.problems.gen_ent import GeneralizedEntropy
+from scvm.problems.distribution import Gaussian, StdGaussian, Barenblatt
+from scvm.eval.cflow import wandb_log_animation
+from scvm.eval.metrics import compute_metric
 from jax.config import config
-from cwgf.eval.utils import save_dict_h5
+from scvm.eval.utils import save_dict_h5
 
 def wandb_log_PME_animation(solver, pme_sol, save_dict):
     import matplotlib
@@ -84,7 +84,7 @@ if __name__ == '__main__':
         'metric_ot': True,
         'objective': True,
         'GT_objective': True,
-        'metric_TV': True, 
+        'metric_TV': True,
         'metric_repeat': 10,
         'val_num_time': 20
     })
@@ -96,7 +96,7 @@ if __name__ == '__main__':
         'volume_scale': 1.5,
         'p0_bound' : 0.25,
         't0' : 1e-3,
-        'C' : 0., 
+        'C' : 0.,
         'init_samples': False,
         'eval_init_samples': False,
         'n_samples_eval' : 1000,
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     x0 = jnp.zeros((1,dim))
     pme_sol = PMESolution(t0, x0, m, dim, p0_bound, C=C, init_samples=False,num_warmup_sampler=num_warmup_sampler, stepsize_sampler=stepsize_sampler, MH_code=MH_code)
     init_dist = Barenblatt(0., t0, x0, m, dim, p0_bound, C=C, init_samples=init_samples,num_warmup_sampler=num_warmup_sampler, stepsize_sampler=stepsize_sampler, MH_code=MH_code)
-    
+
 
     pme_dist_end = pme_sol.get_solution(timesteps[-1])
     problem = GeneralizedEntropy(dim=dim,
@@ -178,11 +178,11 @@ if __name__ == '__main__':
 
         save_dict = {}
 
-        if dim == 1 : 
-            save_dict = wandb_log_PME_animation(solver, pme_sol, save_dict) 
+        if dim == 1 :
+            save_dict = wandb_log_PME_animation(solver, pme_sol, save_dict)
 
         save_dict['timesteps'] = timesteps
-            
+
         data = []
         data_metric = {metric: [] for metric in metrics}
         c_neg_kl = 0
@@ -192,20 +192,20 @@ if __name__ == '__main__':
                 continue
             pme_dist = pme_sol.get_solution(t)
             cur = []
-            if eval_init_samples : 
+            if eval_init_samples :
                 dist_samples_all = dist.sample(jax.random.PRNGKey(900), n_samples_eval*metric_repeat)
                 pme_samples_all = pme_dist.sample(jax.random.PRNGKey(900), n_samples_eval*metric_repeat)
             for metric in metrics :
-                if metric == 'tv' : 
+                if metric == 'tv' :
                     val = compute_metric(dist, pme_dist, metric='tv', num_sample=n_samples_eval, dim = dim)
-                    raw = val 
+                    raw = val
                     val = math.log10(abs(val)+1e-15)
                     cur.append(val)
                 else :
                     s = 0
                     raw = []
                     for seed in range(901, 901 + metric_repeat):
-                        if eval_init_samples : 
+                        if eval_init_samples :
                             dist_samples = jax.random.choice(jax.random.PRNGKey(seed),dist_samples_all,(n_samples_eval,1)).reshape(n_samples_eval,dim)
                             pme_samples = jax.random.choice(jax.random.PRNGKey(seed),pme_samples_all,(n_samples_eval,1)).reshape(n_samples_eval,dim)
                         else :
@@ -221,20 +221,20 @@ if __name__ == '__main__':
                             val = compute_metric(dist, pme_dist, samples1 = dist_samples, samples2 = pme_samples, metric=metric, num_sample=n_samples_eval, seed=seed, dim = dim)
                             raw.append(val)
                             if val < 0 :
-                                c_neg_kl += 1 
+                                c_neg_kl += 1
                             val = math.log10(abs(val)+1e-15)
                         s += val
                     cur.append(s / metric_repeat)
                 data_metric[metric].append(raw)
             data.append([t, *cur])
-            
-            if eval_init_samples : 
+
+            if eval_init_samples :
                 save_dict[f'samples_{i}'] = dist_samples_all
                 save_dict[f'target_samples_{i}'] = pme_samples_all
             else :
                 save_dict[f'samples_{i}'] = dist_samples
                 save_dict[f'target_samples_{i}'] = pme_samples
-    
+
 
         for metric in metrics:
             data_metric[metric] = np.array(data_metric[metric]) # i,j is time i, seed j

@@ -8,8 +8,8 @@ VNN.
 import jax.numpy as jnp
 from flax import linen as nn
 
-from cwgf.solvers.models.activation import ActivationFactory
-from cwgf.solvers.models.time_emb import TimeEmbedding
+from scvm.solvers.models.activation import ActivationFactory
+from scvm.solvers.models.time_emb import TimeEmbedding
 
 
 class SNN(nn.Module):

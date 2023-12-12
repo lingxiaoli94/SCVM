@@ -4,7 +4,7 @@ import jax.numpy as jnp
 import numpy as np
 import flax.linen as nn
 
-from cwgf.solvers.models.activation import ActivationFactory
+from scvm.solvers.models.activation import ActivationFactory
 
 
 class TimeEmbedding(nn.Module):

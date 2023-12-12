@@ -2,14 +2,14 @@
 General time dependant Fokker-Planck Equation with interaction term
 v_t(x,\mu) = b_t(x) - D_t(x)\nabla log p_t(x) - \nabla W \times \mu_t(x)
 '''
-from cwgf.problems.problem_base import ProblemBase
+from scvm.problems.problem_base import ProblemBase
 
 import jax
 import jax.numpy as jnp
 from functools import partial
-from cwgf.problems.distribution import \
+from scvm.problems.distribution import \
     gaussian_unnormalized_log_p, gaussian_log_Z, gaussian_sample
-from cwgf.solvers.utils import jax_div
+from scvm.solvers.utils import jax_div
 
 class TimeFPE(ProblemBase):
     def __init__(self, *,

@@ -1,7 +1,7 @@
 '''
 JKO of Morkov et al. 2021 and Fan et al. 2022.
 '''
-from cwgf.solvers.solver_base import SolverBase
+from scvm.solvers.solver_base import SolverBase
 
 import jax
 import jax.numpy as jnp
@@ -10,9 +10,9 @@ from functools import partial
 from tqdm import trange
 import wandb
 from jax.experimental.host_callback import id_print
-from cwgf.solvers.flow_view import create_flow_view
-from cwgf.problems.distribution import FuncDistribution
-from cwgf.solvers.models.dummy import Dummy
+from scvm.solvers.flow_view import create_flow_view
+from scvm.problems.distribution import FuncDistribution
+from scvm.solvers.models.dummy import Dummy
 
 class JKO(SolverBase):
     def __init__(self, *,

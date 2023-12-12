@@ -11,13 +11,13 @@ import numpy as np
 import math
 from sklearn.datasets import make_spd_matrix
 
-from cwgf.auto.ec import ExperimentCoordinator
-from cwgf.problems.kl import KLDivergence
-from cwgf.problems.distribution import Gaussian, StdGaussian, OUSolution
-from cwgf.eval.cflow import wandb_log_animation
-from cwgf.eval.metrics import compute_metric
-from cwgf.eval.metrics import compute_consistency
-from cwgf.eval.utils import save_dict_h5
+from scvm.auto.ec import ExperimentCoordinator
+from scvm.problems.kl import KLDivergence
+from scvm.problems.distribution import Gaussian, StdGaussian, OUSolution
+from scvm.eval.cflow import wandb_log_animation
+from scvm.eval.metrics import compute_metric
+from scvm.eval.metrics import compute_consistency
+from scvm.eval.utils import save_dict_h5
 
 
 if __name__ == '__main__':

@@ -9,15 +9,15 @@ import jax.numpy as jnp
 import numpy as np
 import math
 
-from cwgf.auto.ec import ExperimentCoordinator
-from cwgf.problems.distribution import Gaussian, \
+from scvm.auto.ec import ExperimentCoordinator
+from scvm.problems.distribution import Gaussian, \
     StdGaussian, FuzzyPointCloud
-from cwgf.problems.spline import Spline
-from cwgf.problems.kl import KLDivergence
-from cwgf.eval.cflow import \
+from scvm.problems.spline import Spline
+from scvm.problems.kl import KLDivergence
+from scvm.eval.cflow import \
     wandb_log_animation, wandb_log_image
-from cwgf.eval.metrics import compute_metric
-from cwgf.eval.utils import save_dict_h5
+from scvm.eval.metrics import compute_metric
+from scvm.eval.utils import save_dict_h5
 
 
 def build_dist_from_img(img, threshold=0.5, bandwidth=0.05,

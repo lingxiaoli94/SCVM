@@ -6,7 +6,7 @@ import functools
 import math
 from jax import random
 from functools import partial
-from cwgf.problems.utils import my_metropolis_hastings, metropolis_hastings
+from scvm.problems.utils import my_metropolis_hastings, metropolis_hastings
 
 class Distribution(ABC):
     @abstractmethod

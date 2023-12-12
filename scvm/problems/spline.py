@@ -1,9 +1,9 @@
-from cwgf.problems.problem_base import ProblemBase
+from scvm.problems.problem_base import ProblemBase
 
 import jax
 import jax.numpy as jnp
 
-from cwgf.solvers.utils import jax_div
+from scvm.solvers.utils import jax_div
 
 class Spline(ProblemBase):
     def __init__(self, *,

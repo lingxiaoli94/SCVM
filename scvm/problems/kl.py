@@ -3,14 +3,14 @@ KL divergence for \mu with density q:
   KL(\mu || p) = \EE_{X\sim\mu}[\log q(X) - \log p(X)]
                = -Ent(\mu) - \EE_{X\sim\mu}[\log p(X)]
 '''
-from cwgf.problems.problem_base import ProblemBase
+from scvm.problems.problem_base import ProblemBase
 
 import jax
 import jax.numpy as jnp
 
-from cwgf.problems.distribution import \
+from scvm.problems.distribution import \
     gaussian_unnormalized_log_p, gaussian_log_Z, gaussian_sample
-from cwgf.solvers.utils import jax_div, jax_div_hutchinson
+from scvm.solvers.utils import jax_div, jax_div_hutchinson
 
 class KLDivergence(ProblemBase):
     def __init__(self, *,

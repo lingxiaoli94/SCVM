@@ -1,10 +1,10 @@
-from cwgf.solvers.models.tdpf_base import TDPFBase
+from scvm.solvers.models.tdpf_base import TDPFBase
 
 from flax import linen as nn
 import jax
 import jax.numpy as jnp
 
-from cwgf.solvers.models.activation import ActivationFactory
+from scvm.solvers.models.activation import ActivationFactory
 
 class TDMLP(TDPFBase):
     num_layer: int
@@ -24,7 +24,7 @@ class TDMLP(TDPFBase):
           (), potential at (x, t).
         '''
         assert(x.ndim == 1)
-        y = x 
+        y = x
         for _ in range(self.num_layer):
             y = nn.Dense(self.layer_size)(jnp.append(y, t))
             y = ActivationFactory.create(self.activation_layer)(y)

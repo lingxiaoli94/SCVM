@@ -7,8 +7,8 @@ from collections import namedtuple
 import sys
 import wandb
 
-from cwgf.auto.registry import Registry, ParamClsSetting
-from cwgf.solvers.thp import THP
+from scvm.auto.registry import Registry, ParamClsSetting
+from scvm.solvers.thp import THP
 
 def create_parser():
     return argparse.ArgumentParser(allow_abbrev=False)

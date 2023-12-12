@@ -2,7 +2,7 @@
 Adjoint solver from Shen et al. 2022.
 '''
 
-from cwgf.solvers.flow_base import FlowBase
+from scvm.solvers.flow_base import FlowBase
 
 import jax
 import jax.numpy as jnp
@@ -10,11 +10,11 @@ from jax.experimental.ode import odeint as jax_odeint
 import numpy as np
 import wandb
 
-from cwgf.solvers.models.vnn import VNN
-from cwgf.solvers.utils import jax_div
-from cwgf.problems.tFPE import TimeFPE
-from cwgf.problems.kl import KLDivergence
-from cwgf.auto.train_state import FlowTrainState
+from scvm.solvers.models.vnn import VNN
+from scvm.solvers.utils import jax_div
+from scvm.problems.tFPE import TimeFPE
+from scvm.problems.kl import KLDivergence
+from scvm.auto.train_state import FlowTrainState
 
 
 class AdjointSolver(FlowBase):

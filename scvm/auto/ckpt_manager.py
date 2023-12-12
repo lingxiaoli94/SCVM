@@ -12,7 +12,7 @@ class CkptManager:
         '''
         solver must have a field "state" that is serializable.
         '''
-        from cwgf.auto.registry import Registry
+        from scvm.auto.registry import Registry
 
         setting = Registry.get_solver_setting(solver)
         assert(setting.need_thp and

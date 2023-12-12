@@ -5,10 +5,10 @@ from jax.experimental.ode import odeint as jax_odeint
 import jaxopt
 import flax
 
-from cwgf.solvers.models.vnn import VNN
-from cwgf.solvers.models.dummy import Dummy
-from cwgf.solvers.models.icnn import ICNN
-from cwgf.solvers.utils import jax_div
+from scvm.solvers.models.vnn import VNN
+from scvm.solvers.models.dummy import Dummy
+from scvm.solvers.models.icnn import ICNN
+from scvm.solvers.utils import jax_div
 
 '''
 An abstract class that presents a unified view for pushforward-based models

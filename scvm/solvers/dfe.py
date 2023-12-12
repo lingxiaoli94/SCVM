@@ -2,18 +2,18 @@
 Discrete forward Euler by Boffi 2022.
 '''
 
-from cwgf.solvers.solver_base import SolverBase
+from scvm.solvers.solver_base import SolverBase
 import jax
 import jax.numpy as jnp
 import numpy as np
 import optax
 from tqdm import trange
 
-from cwgf.solvers.models.snn import SNN
-from cwgf.solvers.utils import jax_div, jax_div_hutchinson
-from cwgf.problems.kl import KLDivergence
-from cwgf.problems.tFPE import TimeFPE
-from cwgf.problems.distribution import FuzzyPointCloud
+from scvm.solvers.models.snn import SNN
+from scvm.solvers.utils import jax_div, jax_div_hutchinson
+from scvm.problems.kl import KLDivergence
+from scvm.problems.tFPE import TimeFPE
+from scvm.problems.distribution import FuzzyPointCloud
 
 class DFE(SolverBase):
     def __init__(self, *,

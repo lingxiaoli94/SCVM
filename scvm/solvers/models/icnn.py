@@ -10,7 +10,7 @@ import jax
 import jax.numpy as jnp
 from typing import Any, Sequence
 
-from cwgf.solvers.models.activation import ActivationFactory
+from scvm.solvers.models.activation import ActivationFactory
 
 class PositiveDense(nn.Module):
     out_dim: int

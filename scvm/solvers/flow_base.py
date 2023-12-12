@@ -1,4 +1,4 @@
-from cwgf.solvers.solver_base import SolverBase
+from scvm.solvers.solver_base import SolverBase
 
 from abc import abstractmethod
 import jax
@@ -7,10 +7,10 @@ import numpy as np
 import time
 from tqdm import trange
 import wandb
-from cwgf.problems.distribution import FuncDistribution
-from cwgf.solvers.flow_view import create_flow_view
-from cwgf.auto.train_state import FlowTrainState
-from cwgf.auto.ckpt_manager import CkptManager
+from scvm.problems.distribution import FuncDistribution
+from scvm.solvers.flow_view import create_flow_view
+from scvm.auto.train_state import FlowTrainState
+from scvm.auto.ckpt_manager import CkptManager
 
 class FlowBase(SolverBase):
     def __init__(self, *,
